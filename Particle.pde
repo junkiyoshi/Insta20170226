@@ -16,7 +16,7 @@ class Particle
     location = l.copy();
     color_value = random(255);
     body_color = color(color_value, 255, 255);
-    len = 8;
+    len = 20;
     color_history = new color[len];
     x_history = new float[len];
     y_history = new float[len];
@@ -29,10 +29,7 @@ class Particle
   }
   
   void update()
-  {   
-    color_value = (color_value + 3) % 255;
-    body_color = color(color_value, 255, 255);
-    
+  {      
     for(int i = len - 1; i > 0; i--)
     {
       color_history[i] = color_history[i - 1];
@@ -40,9 +37,12 @@ class Particle
       y_history[i] = y_history[i - 1];
     }
     
+    color_value = (color_value + 3) % 255;
+    body_color = color(color_value, 255, 255);
+      
     color_history[0] = body_color;
-    x_history[0] = x_history[0] + 5;
-    y_history[0] = y_history[0] + 5;
+    x_history[0] = x_history[0] + 4;
+    y_history[0] = y_history[0] + 4;
   }
   
   void display()
@@ -67,13 +67,13 @@ class Particle
       }else
       {
         stroke(color_history[i]);
-        strokeWeight(5);
+        strokeWeight(1.5);
         noFill();
         box(size);
       }
       
       popMatrix();
-      size += 40;
+      size += 25;
     }
   }
 }
